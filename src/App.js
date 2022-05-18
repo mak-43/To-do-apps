@@ -4,7 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './Components/Shared/Header/Header';
 import Footer from './Components/Shared/Footer/Footer';
 import AddTask from './Components/ToDo/AddTask/AddTask';
-
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
       <Route path='/' element={<AddTask/>}></Route>
      </Routes>
     <Footer/>
+    <ToastContainer />
     </div>
   );
 }
