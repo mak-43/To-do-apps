@@ -36,7 +36,7 @@ const AddTask = () => {
             fetch(url, {
                 method: 'DELETE'
             })
-                .then(res => res.json)
+                .then(res => res.json())
                 .then(data => {
                     console.log(data)
                     toast('Item deleted')

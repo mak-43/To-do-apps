@@ -6,6 +6,7 @@ import Footer from './Components/Shared/Footer/Footer';
 import AddTask from './Components/ToDo/AddTask/AddTask';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import Login from './Components/Pages/Login/Login';
 function App() {
   return (
     <div className="App">
@@ -13,6 +14,7 @@ function App() {
       <Header/>
      <Routes>
       <Route path='/' element={<AddTask/>}></Route>
+      <Route path='/login' element={<Login/>}></Route>
      </Routes>
     <Footer/>
     <ToastContainer />
