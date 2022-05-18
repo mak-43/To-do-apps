@@ -3,11 +3,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { useForm } from "react-hook-form";
 import { Table } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
 const AddTask = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [tasks, setTasks] = useState([])
+    const [user] = useAuthState(auth)
     useEffect(() => {
-        const url = `http://localhost:5000/alltask`
+        const email=user.email
+        const url = `http://localhost:5000/alltask?email=${email}`
         fetch(url)
             .then(res => res.json())
             .then(data => setTasks(data))
@@ -32,7 +36,7 @@ const AddTask = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure ?')
         if (proceed) {
-            const url = `http://localhost:5000//delete/${id}`
+            const url = `http://localhost:5000/delete/${id}`
             fetch(url, {
                 method: 'DELETE'
             })
@@ -48,7 +52,7 @@ const AddTask = () => {
             <form className='flex flex-col mb-4' onSubmit={handleSubmit(onSubmit)}>
                 <h2 className='mb-3'>Add Your Task</h2>
 
-                <input className='border p-2 mb-2 ' readOnly  {...register("email")} />
+                <input value={user.email} className='border p-2 mb-2 ' readOnly  {...register("email")} />
                 <input placeholder='Task Name' className='border p-2 mb-2 ' {...register("name", { required: true })} />
 
                 <textarea placeholder='Description' className='border p-2 mb-2' {...register("description")} />

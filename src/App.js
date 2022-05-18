@@ -8,13 +8,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Login from './Components/Pages/Login/Login';
 import Register from './Components/Pages/Registered/Register';
+import RequireAuth from './Components/Pages/RequireAuth/RequireAuth';
 function App() {
   return (
     <div className="App">
       
       <Header/>
      <Routes>
-      <Route path='/' element={<AddTask/>}></Route>
+      <Route path='/' element={<RequireAuth>
+         <AddTask/>
+      </RequireAuth>}></Route>
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
      </Routes>
