@@ -10,8 +10,8 @@ const AddTask = () => {
     const [tasks, setTasks] = useState([])
     const [user] = useAuthState(auth)
     useEffect(() => {
-        const email=user.email
-        const url = `http://localhost:5000/alltask?email=${email}`
+        const email = user.email
+        const url = ` https://morning-cliffs-35654.herokuapp.com/alltask?email=${email}`
         fetch(url)
             .then(res => res.json())
             .then(data => setTasks(data))
@@ -19,7 +19,7 @@ const AddTask = () => {
 
     }, [tasks])
     const onSubmit = data => {
-        const url = `http://localhost:5000/addtask`
+        const url = ` https://morning-cliffs-35654.herokuapp.com/addtask`
         fetch(url, {
             method: 'post',
             headers: {
@@ -36,7 +36,7 @@ const AddTask = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure ?')
         if (proceed) {
-            const url = `http://localhost:5000/delete/${id}`
+            const url = ` https://morning-cliffs-35654.herokuapp.com/delete/${id}`
             fetch(url, {
                 method: 'DELETE'
             })
@@ -70,14 +70,14 @@ const AddTask = () => {
                         </tr>
                     </thead>
                     {
-                        tasks.map((t,index) =>
+                        tasks.map((t, index) =>
 
                             <tbody>
                                 <tr>
-                                    <td >{index+1} </td>
+                                    <td >{index + 1} </td>
                                     <td >{t.name} </td>
-                                    <td>{t.description}</td>                                 
-                                    <td><button className='text-danger font-bold' onClick={() => handleDelete(`${t._id}`)} >X</button></td>                                 
+                                    <td>{t.description}</td>
+                                    <td><button className='text-danger font-bold' onClick={() => handleDelete(`${t._id}`)} >X</button></td>
                                 </tr>
                             </tbody>
 
